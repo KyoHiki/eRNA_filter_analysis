@@ -8,12 +8,15 @@ In preparation.
    
 # Files
 1. Rcode.md  
-An example R code for analysis and visualization. This code requires an input dataset (i.e., "Data_for_R_analysis.xlsx").  
+An example R code for analysis and visualization. This code requires an input dataset (i.e., "htseq_all_sample_count_filter.tsv" and "TIN_summary.xlsx").  
      
-2. Data_for_R_analysis.xlsx  
-This dataset "Data_for_R_analysis.xlsx" includes the raw count data of medaka genes in eRNA and skin RNA.
-  
-3. Figs  
+2. htseq_all_sample_count_filter.tsv  
+This datasheet includes the raw count data of medaka genes in eRNA and skin RNA.
+
+3. TIN_summary.xlsx
+This datasheet includes the transcript integrity number (TIN) for medaka genes in eRNA and skin RNA.
+
+4. Figs  
 Figures generated from the R code.
 
 # Publication
