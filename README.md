@@ -1,10 +1,7 @@
-# What is this page?
+# About this page
 This page shows the raw data and R code to reproduce the analyses in Hiki & Jo (in preparation). 
-
-   
-# Objective  
-In preparation.  
- 
+  
+  
    
 # Files
 1. Rcode.md  
