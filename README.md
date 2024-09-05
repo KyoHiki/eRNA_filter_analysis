@@ -1,10 +1,10 @@
 # What is this page?
-This page shows the raw data and R code to reproduce the figures in Hiki & Jo (in preparation). 
+This page shows the raw data and R code to reproduce the analyses in Hiki & Jo (in preparation). 
 
-
+   
 # Objective  
 In preparation.  
-  
+ 
    
 # Files
 1. Rcode.md  
