@@ -49,8 +49,8 @@ TIN <- TIN_raw %>%
          Skin = mean(c(Skin_1,Skin_2,Skin_3,Skin_4)) )　
   
 dim(TIN)
+# [1] 44871    21    
 ```
-# [1] 44871    21   
 
 ```r
 
@@ -103,7 +103,7 @@ TIN %>%
     dplyr::filter(! (TIN==0)) %>%
   group_by(Type,mito) %>%
   summarize( Median = median(TIN), Lower = quantile(TIN, 0.25), Higher=quantile(TIN, 0.75))
-```
+
 #  Type   mito  Median Lower Higher
 #1 0.4 µm Mito   85.5  83.6    87.0
 #2 0.4 µm Nucl    9.22  5.03   16.5
@@ -113,7 +113,7 @@ TIN %>%
 #6 10 µm  Nucl   11.5   5.66   22.5
 #7 Skin   Mito   91.6  89.5    93.8
 #8 Skin   Nucl   73.6  46.6    82.4
-
+```
 
 ```r
 ########## Estimation of the number of detected genes ##########
