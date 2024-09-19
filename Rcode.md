@@ -52,68 +52,8 @@ dim(TIN)
 # [1] 44871    21    
 ```
 
-```r
 
 
-
-########## Figure 1: TIN distribution in eRNA and skin RNA ##########
-mito <- c("gene-ATP6", "gene-COX1", "gene-COX2","gene-COX3","gene-CYTB", "gene-ND1","gene-ND2","gene-ND3","gene-ND4","gene-ND5","gene-ND6" )
-
-Labels <- data.frame(Type=c(3.58,3.85),
-                     Mito=c("Mito","Nucl"),Text=c("Mito","Nucl"),y=c(100,65))
-
-Figure_TIN <- TIN %>% 
-  pivot_longer(cols="3 µm":Skin, names_to=c("Type"),values_to="TIN") %>% 
-  dplyr::select(Gene,Type,TIN) %>%
-  mutate(mito = ifelse(Gene %in% mito, "Mito","Nucl")) %>% 
-  mutate(Type =factor(Type,levels=c("0.4 µm","3 µm", "10 µm","Skin"))) %>%
-  dplyr::filter(! (TIN==0)) %>%     # remove genes with the TIN value of 0
-  ggplot() +  
-   geom_violin(aes(x=Type,y=TIN,fill=mito),position = position_dodge(width=0.5),alpha=0.85) + 
-   stat_summary(aes(x=Type,y=TIN,group=mito),
-    fun = "median",fun.min = function(z) { quantile(z,0.25) },fun.max = function(z) { quantile(z,0.75) },
-    size = 0.8, linewidth=1, geom = "pointrange", position = position_dodge(width=0.5) )+
-   theme_prism(base_size=25,border=TRUE)+
-   theme(axis.title.x = element_blank(),
-         legend.position = "none",
-         strip.text = element_text(hjust = 0.05))+
-   scale_y_continuous(limits=c(0,100))+
-   labs(y ="TIN") +
-   scale_fill_manual(values=c("#009E73", "#CC79A7")) +
-   scale_color_manual(values=c("#009E73", "#CC79A7")) +  
-   geom_text(data=Labels,aes(x=Type,y=y,label=Text,col=Mito),size=7)
-
-
-svglite("Figure_1_TIN.svg", width=7.5, height=5.5)
-Figure_TIN
-dev.off()
-
-```
-![](Figs/Figure_1_TIN.svg)
-
-```r
-  
-  
-#### Statistics for TIN ####
-TIN %>% 
-  pivot_longer(cols="3 µm":Skin, names_to=c("Type"),values_to="TIN") %>% 
-  dplyr::select(Gene,Type,TIN) %>%
-  mutate(mito = ifelse(Gene %in% mito, "Mito","Nucl")) %>% 
-  mutate(Type =factor(Type,levels=c("0.4 µm","3 µm", "10 µm","Skin"))) %>%
-    dplyr::filter(! (TIN==0)) %>%
-  group_by(Type,mito) %>%
-  summarize( Median = median(TIN), Lower = quantile(TIN, 0.25), Higher=quantile(TIN, 0.75))
-
-#  Type   mito  Median Lower Higher
-#1 0.4 µm Mito   85.5  83.6    87.0
-#2 0.4 µm Nucl    9.22  5.03   16.5
-#3 3 µm   Mito   87.2  86.6    89.9
-#4 3 µm   Nucl   13.4   5.77   25.1
-#5 10 µm  Mito   85.2  82.9    88.0
-#6 10 µm  Nucl   11.5   5.66   22.5
-#7 Skin   Mito   91.6  89.5    93.8
-#8 Skin   Nucl   73.6  46.6    82.4
-```
 
 ```r
 ########## Estimation of the number of detected genes ##########
